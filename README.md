@@ -171,3 +171,36 @@ e:/Ridhana/
 ├── next.config.ts           # Next.js + MDX + redirects
 └── vercel.json              # Vercel deployment config
 ```
+
+---
+
+## Admin Console (/admin)
+
+A protected administration portal for managing site products, media uploads, blog posts, and site parameters.
+
+### 1. Setup & Environment Variables
+Add the following keys to your Vercel/local `.env` configuration:
+```env
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+```
+
+### 2. Creating the First Owner Account
+Since self-registration is closed for security, the first owner account must be provisioned manually:
+1. Go to the **Supabase Dashboard** -> **Authentication** -> **Users** -> **Add User** (Create user with email/password).
+2. Copy the newly created user's **User ID** (UUID).
+3. Go to the **SQL Editor** in Supabase and run:
+   ```sql
+   INSERT INTO public.admin_users (id, email, role)
+   VALUES ('USER_UUID_HERE', 'owner_email@example.com', 'owner');
+   ```
+4. Now log in at `/admin/login` using these credentials.
+
+### 3. Rotating & Revoking Access
+- **To demote or rotate keys:** Go to the `admin_users` table and update the `role` field from `owner` to `editor`, or vice versa.
+- **To revoke access:** Delete the user's record from `admin_users` or delete them from the Supabase Auth user list. Their active session will expire immediately.
+
+### 4. Storage Limits & Media Library
+- **Free Tier Cap:** Supabase Free Tier allows up to **1 GB** of storage. Monitor the storage progress bar in the media dashboard at `/admin/media`.
+- **Media Variants:** On upload, files are optimized (EXIF stripped for privacy), converted to WebP variants for responsive displays (thumbnail, card, and full sizes), and stored dynamically in buckets.
+
