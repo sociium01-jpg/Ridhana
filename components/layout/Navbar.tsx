@@ -10,6 +10,7 @@ const navLinks = [
   { label: "Home",        href: "/" },
   { label: "Who We Are",  href: "/who-we-are" },
   { label: "Products",    href: "/products" },
+  { label: "Nutrition",   href: "/calculator" },
   { label: "Blog",        href: "/blog" },
   { label: "Contact",     href: "/contact" },
 ];
@@ -54,6 +55,13 @@ export default function Navbar() {
           <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
           <path d="M3 6h18" />
           <path d="M16 10a4 4 0 0 1-8 0" />
+        </svg>
+      );
+    }
+    if (href === "/calculator") {
+      return (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={stroke} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ opacity }}>
+          <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
         </svg>
       );
     }
