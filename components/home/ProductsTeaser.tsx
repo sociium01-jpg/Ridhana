@@ -1,45 +1,20 @@
 "use client";
 
 import { motion } from "framer-motion";
-import ProductCard3D from "@/components/3d/ProductCard3D";
+import DialCarousel from "@/components/ui/DialCarousel";
 import MagneticButton from "@/components/ui/MagneticButton";
 import MaskedTextReveal from "@/components/ui/MaskedTextReveal";
-
-const featuredProducts = [
-  {
-    name: "MP Sharbati Wheat Atta",
-    price: "₹ 120",
-    pricePerKg: "Kg",
-    image: "/images/product-mp-sharbati.jpg",
-    description: "Premium Madhya Pradesh Sharbati wheat, stone-milled slowly to preserve its natural sweetness and nutrition.",
-  },
-  {
-    name: "MH Khapli Wheat Atta",
-    price: "₹ 250",
-    pricePerKg: "Kg",
-    image: "/images/product-mh-khapli.jpg",
-    description: "Ancient Emmer wheat from Maharashtra — lower gluten, richer nutrition, perfect for sensitive digestion.",
-    badge: "Heritage Grain",
-  },
-  {
-    name: "Bajra (Pearl Millet) Atta",
-    price: "₹ 200",
-    pricePerKg: "Kg",
-    image: "/images/product-bajra.jpg",
-    description: "Iron-rich pearl millet, stone-ground fresh. Ideal for rotis with a distinctive earthy, nutty flavour.",
-  },
-];
 
 export default function ProductsTeaser() {
   return (
     <section
-      className="section-py bg-bone"
+      className="section-py bg-bone relative overflow-hidden"
       aria-labelledby="products-teaser-heading"
       id="featured-products"
     >
-      <div className="container-px max-w-[1440px] mx-auto">
+      <div className="container-px max-w-[1440px] mx-auto relative z-10">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
           <div>
             <MaskedTextReveal
               as="p"
@@ -69,12 +44,8 @@ export default function ProductsTeaser() {
           </motion.div>
         </div>
 
-        {/* Products grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-          {featuredProducts.map((product, i) => (
-            <ProductCard3D key={product.name} product={product} index={i} />
-          ))}
-        </div>
+        {/* 3D Dial Carousel */}
+        <DialCarousel />
 
         {/* WhatsApp order banner */}
         <motion.div
@@ -107,6 +78,10 @@ export default function ProductsTeaser() {
           </MagneticButton>
         </motion.div>
       </div>
+
+      {/* Decorative background visualizers to give an organic paper-grain/wheat-sheaf look */}
+      <div className="absolute top-[20%] left-[-10%] w-[350px] h-[350px] rounded-full bg-wheat/10 blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-[10%] right-[-10%] w-[450px] h-[450px] rounded-full bg-gold/5 blur-[120px] pointer-events-none" />
     </section>
   );
 }

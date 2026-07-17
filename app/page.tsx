@@ -21,11 +21,11 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <ProductsTeaser />
       <GrainJourney />
       <PillarSection />
       <BrandSection />
       <ProcessSection />
-      <ProductsTeaser />
       <MillVisit />
       <BlogTeaser />
     </>

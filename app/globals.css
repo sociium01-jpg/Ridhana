@@ -55,6 +55,13 @@ body {
   cursor: none; /* Custom cursor */
 }
 
+/* Bottom padding for mobile bottom tab bar */
+@media (max-width: 767px) {
+  body {
+    padding-bottom: calc(60px + env(safe-area-inset-bottom));
+  }
+}
+
 /* Touch devices: restore cursor */
 @media (hover: none) {
   body { cursor: auto; }
